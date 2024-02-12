@@ -7,8 +7,8 @@
 <div class="main">
   <h1>Pizzas crud</h1>
   @if (pizzasAvailables.Count() == 0)
-  {
-    <h2>Loading pizzas</h2>
+  {    
+      <Loading/>
   }
   else
   {
@@ -33,7 +33,7 @@
   <h2>@pizzasSelected.Sum(x=>x.BasePrice)</h2>
   @foreach (var item in pizzasSelected)
       {
-        <ExampleSecondaryComponent PizzaName="@item.Name" PizzaDescription="@item.Description" />
+        <ExampleComponentSecondary PizzaName="@item.Name" PizzaDescription="@item.Description" />
       }
 </div>
 

@@ -1,18 +1,18 @@
 @using BlazorApp.Models;
 @using BlazorApp.Services;
 @inject PizzaService PizzaSvc
-@page "/ExamplePrimaryComponent"
+@page "/ExampleComponentPrimary"
 @rendermode InteractiveServer
 
 <div class="main">
   <h1>Blazing Pizzas</h1>
   <ul class="pizza-cards">
     @if(pizzas.Count()==0){
-      <span>Loading</span>
+      <Loading/>
     }else{
       @foreach (var item in pizzas)
       {
-        <ExampleSecondaryComponent PizzaName="@item.Name" PizzaDescription="@item.Description" />
+        <ExampleComponentSecondary PizzaName="@item.Name" PizzaDescription="@item.Description" />
       }
     }      
   </ul>

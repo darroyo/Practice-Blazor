@@ -8,7 +8,7 @@
   <h1>Blazing Pizzas</h1>
   <ul class="pizza-cards">
     @if(pizzas.Count()==0){
-      <span>Loading</span>
+      <Loading/>
     }else{
       @foreach (var special in pizzas)
       {
