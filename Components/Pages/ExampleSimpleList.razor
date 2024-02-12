@@ -1,0 +1,33 @@
+@using BlazorApp.Models;
+@page "/exampleSimpleList"
+@rendermode InteractiveServer
+
+<h3>example Todo</h3>
+<button @onclick="addTodo">Add element</button>
+<input @bind="todoValue" type="text"/>
+<span>@l.Count()</span>
+<hr>
+<ul>
+    @foreach (var e in l)
+    {
+        <li>
+            <input @bind="e.Title" />
+            <input type="checkbox" @bind="e.IsDone" />
+            <input type="number" @bind="e.Order" />
+        </li>
+    }
+</ul>
+
+@code {
+    private List<TodoItem> l = new();
+    private string todoValue = "";
+    private int currentOrder = 0;
+    private void addTodo(){
+        l.Add(new TodoItem{
+            Title = todoValue,
+            Order = currentOrder,
+            IsDone = true
+        });
+        currentOrder++;
+    }
+}
