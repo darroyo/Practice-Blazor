@@ -1,0 +1,16 @@
+﻿@using BlazorApp.Models;
+@page "/exampleConfig"
+@rendermode InteractiveServer
+@inject ConfigExample cfg
+
+<h1>@cfg.Counter</h1>
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+
+    private void IncrementCount()
+    {
+        cfg.Counter++;
+      StateHasChanged();
+    }
+}

@@ -1,5 +1,6 @@
-﻿@page "/"
-
+﻿@using BlazorApp.Models;
+@page "/"
+@inject ConfigExample cfg
 <PageTitle>Home</PageTitle>
 
 <h1>Hello, world!</h1>
@@ -7,3 +8,5 @@
 Welcome to your new app.
 <ExampleCounter IncrementAmount="10"/>
 <ExampleBind/>
+Counter global: @cfg.Counter
+
