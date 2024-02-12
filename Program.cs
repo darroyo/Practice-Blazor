@@ -38,4 +38,5 @@ using (var scope = scopeFactory.CreateScope())
         SeedData.Initialize(db);
     }
 }
+app.UseStatusCodePagesWithRedirects("/404");
 app.Run();

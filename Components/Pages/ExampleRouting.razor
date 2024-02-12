@@ -1,0 +1,36 @@
+@page "/ExampleRouting/{pizzaname}"
+@using Microsoft.AspNetCore.WebUtilities
+@inject NavigationManager NavManager
+
+
+
+<h1>Buy a Pizza</h1>
+
+<p>I want to order a: @PizzaName</p>
+
+<p>I want to add this topping: @ToppingName</p>
+<NavLink class="nav-link" href="ExampleCounter">
+    Buy pizza
+</NavLink>
+
+
+@code {
+	[Parameter]
+	public string PizzaName { get; set; }
+	
+	private string ToppingName { get; set; }
+	
+	protected override void OnInitialized()
+	{
+		var uri = NavManager.ToAbsoluteUri(NavManager.Uri);
+		if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("extratopping", out var extraTopping))
+		{
+			ToppingName = System.Convert.ToString(extraTopping);
+		}
+	}    
+	
+	private void NavigateToPaymentPage()
+	{
+		NavManager.NavigateTo("https://github.com/dotnet/aspnetcore/issues/52660",true);
+	}
+}
