@@ -1,0 +1,37 @@
+@using BlazorApp.Models;
+@using BlazorApp.Services;
+@inject PizzaService PizzaSvc
+@page "/ExamplePizzaWithService"
+@rendermode InteractiveServer
+
+<div class="main">
+  <h1>Blazing Pizzas</h1>
+  <ul class="pizza-cards">
+    @if(pizzas.Count()==0){
+      <span>Loading</span>
+    }else{
+      @foreach (var special in pizzas)
+      {
+        <li style="background-color: gray">
+          <div class="pizza-info">
+              <span class="title">@special.Name</span>
+                  @special.Description
+                <span class="price">@special.GetFormattedBasePrice()</span>
+          </div>
+        </li>
+      }
+    }      
+  </ul>
+</div>
+
+@code {
+    IEnumerable<Pizza> pizzas = new List<Pizza>();
+    protected override async Task OnInitializedAsync()
+    {        
+        loadInfo();
+    }
+    public async Task loadInfo(){
+      pizzas = await PizzaSvc.GetPizzas();
+      StateHasChanged();
+    }
+}
