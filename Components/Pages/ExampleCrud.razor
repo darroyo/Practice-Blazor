@@ -1,0 +1,56 @@
+@using BlazorApp.Models;
+@using BlazorApp.Services;
+@inject PizzaService PizzaSvc
+@page "/ExampleCrud"
+@rendermode InteractiveServer
+
+<div class="main">
+  <h1>Pizzas crud</h1>
+  @if (pizzasAvailables.Count() == 0)
+  {
+    <h2>Loading pizzas</h2>
+  }
+  else
+  {
+    <table>
+      @foreach (var pizza in pizzasAvailables)
+      {
+        <tr>
+          <td>
+            @pizza.Name
+          </td>
+          <td>
+            @pizza.Description
+          </td>
+          <td>
+            <input type="button" value="Add To Cart" @onclick="@(e => AddToCart(pizza))"/>
+          </td>
+        </tr>
+      }
+    </table>
+  }
+  <h2>Cart:</h2>
+  <h2>@pizzasSelected.Sum(x=>x.BasePrice)</h2>
+  @foreach (var item in pizzasSelected)
+      {
+        <ExampleSecondaryComponent PizzaName="@item.Name" PizzaDescription="@item.Description" />
+      }
+</div>
+
+@code {
+  IEnumerable<Pizza> pizzasAvailables = new List<Pizza>();
+  List<Pizza> pizzasSelected = new List<Pizza>();
+  protected override async Task OnInitializedAsync()
+  {
+    loadInfo();
+  }
+  public async Task loadInfo()
+  {
+    pizzasAvailables = await PizzaSvc.GetPizzas();
+    StateHasChanged();
+  }
+
+  private void AddToCart(Pizza p){
+    pizzasSelected.Add(p);
+  }
+}

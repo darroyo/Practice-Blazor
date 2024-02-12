@@ -14,7 +14,7 @@ namespace BlazorApp.Services
         }
         public async Task<IEnumerable<Pizza>> GetPizzas()
         {
-            await Task.Delay(2000);
+            await Task.Delay(1000);
             return (await _db.Pizzas.ToListAsync()).OrderByDescending(s => s.BasePrice).ToList();
         }
     }

@@ -10,10 +10,32 @@
 <button @onclick="fill">Fill</button>
 <p>@text</p>
 
+
+
+<h1>My favorite pizza is: @pizza</h1>
+<p>
+    Enter your favorite pizza with bind:
+    <input @bind="pizza" /><br>
+    Enter your favorite pizza with bind bind-value event:
+    <input @bind-value="pizza" @bind-value:event="oninput" />
+</p>
+<h1>Datetime @birthdate</h1>
+<p>
+    Enter your birth date:
+    <input @bind="birthdate" @bind:format="dd-MM-yyyy" />
+</p>
+
+
+
+
 @code {
     string text = "";
 
     private void fill(){
         text = "aaa";
     }
+
+    string pizza = "";
+
+    private DateTime birthdate { get; set; } = DateTime.Now;
 }
