@@ -1,0 +1,19 @@
+﻿@page "/exampleBind"
+@rendermode InteractiveServer
+
+<PageTitle>example Bind</PageTitle>
+
+<h1>example Bind</h1>
+
+<input @bind="text" />
+<button @onclick="() => text = string.Empty">Clear</button>
+<button @onclick="fill">Fill</button>
+<p>@text</p>
+
+@code {
+    string text = "";
+
+    private void fill(){
+        text = "aaa";
+    }
+}
