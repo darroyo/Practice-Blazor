@@ -34,8 +34,12 @@
   }
   <h2>Edit form:</h2>
   <EditForm Model=@currentPizza  OnSubmit="ValidateData">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    
+    
     <InputNumber @bind-Value=currentPizza.Id></InputNumber>
-    <InputText @bind-Value=currentPizza.Name></InputText>
+    <InputText id="name" @bind-Value=currentPizza.Name></InputText>
     <InputText @bind-Value=currentPizza.Description></InputText>
     <input type="submit" class="btn btn-primary" value="Save"/>
 </EditForm>
