@@ -1,0 +1,59 @@
+﻿@using BlazorApp.Models;
+@using BlazorApp.Services;
+@inject PizzaService PizzaSvc
+@page "/exampleForm"
+@rendermode InteractiveServer
+
+<div class="main">
+  <h1>Pizzas crud</h1>
+  @if (pizzasAvailables.Count() == 0)
+  {    
+      <Loading/>
+  }
+  else
+  {
+    <table>
+      @foreach (var pizza in pizzasAvailables)
+      {
+        <tr>
+          <td>
+            @pizza.Id
+          </td>
+          <td>
+            @pizza.Name
+          </td>
+          <td>
+            @pizza.Description
+          </td>
+          <td>
+            <input type="button" value="Edit" @onclick="@(e => Edit(pizza))"/>
+          </td>
+        </tr>
+      }
+    </table>
+  }
+  <h2>Edit form:</h2>
+  <EditForm Model=@currentPizza>
+    <InputNumber @bind-Value=currentPizza.Id></InputNumber>
+    <InputText @bind-Value=currentPizza.Name></InputText>
+    <InputText @bind-Value=currentPizza.Description></InputText>
+</EditForm>
+</div>
+
+@code {
+  IEnumerable<Pizza> pizzasAvailables = new List<Pizza>();
+  Pizza currentPizza = new Pizza();
+  protected override async Task OnInitializedAsync()
+  {
+    loadInfo();
+  }
+  public async Task loadInfo()
+  {
+    pizzasAvailables = await PizzaSvc.GetPizzas();
+    StateHasChanged();
+  }
+
+  private void Edit(Pizza p){
+    currentPizza = p;
+  }
+}
