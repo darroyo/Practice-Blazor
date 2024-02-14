@@ -1,0 +1,16 @@
+@typeparam TItem
+Data count: @Data.Count()
+<ul>
+  @foreach (TItem item in Data ?? Array.Empty<TItem>())
+  {
+    @ItemTemplate(item)
+  }
+</ul>
+@code
+{
+  [Parameter]
+  public IEnumerable<TItem> Data { get; set; }
+
+  [Parameter]
+  public RenderFragment<TItem> ItemTemplate { get; set; }
+}

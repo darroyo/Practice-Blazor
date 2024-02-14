@@ -1,0 +1,25 @@
+@using BlazorApp.Models;
+@using BlazorApp.Services;
+@inject PizzaService PizzaSvc
+@page "/exampleLayout2"
+@rendermode InteractiveServer
+<ExampleLayout1 Data="pizzas">
+    <ItemTemplate>
+        <br>
+        <b>@context.Name</b>
+        <b>@context.Description</b>
+    </ItemTemplate>
+</ExampleLayout1>
+
+
+@code {
+    IEnumerable<Pizza> pizzas = new List<Pizza>();
+    protected override async Task OnInitializedAsync()
+    {        
+        await loadInfo();
+    }
+    public async Task loadInfo(){
+      pizzas = await PizzaSvc.GetPizzas();
+      StateHasChanged();
+    }
+}
