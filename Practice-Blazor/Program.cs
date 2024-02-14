@@ -11,6 +11,7 @@ builder.Services.AddRazorComponents()
 builder.Services.AddSqlite<PizzaStoreContext>("Data Source=pizza.db");
 builder.Services.AddScoped<PizzaService>();
 builder.Services.AddSingleton<ConfigExample>();
+builder.Services.AddSingleton<GameState>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
