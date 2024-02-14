@@ -33,16 +33,19 @@
     </table>
   }
   <h2>Edit form:</h2>
-  <EditForm Model=@currentPizza>
+  <EditForm Model=@currentPizza  OnSubmit="ValidateData">
     <InputNumber @bind-Value=currentPizza.Id></InputNumber>
     <InputText @bind-Value=currentPizza.Name></InputText>
     <InputText @bind-Value=currentPizza.Description></InputText>
+    <input type="submit" class="btn btn-primary" value="Save"/>
 </EditForm>
+<h1>Errors: @Message</h1>
 </div>
 
 @code {
   IEnumerable<Pizza> pizzasAvailables = new List<Pizza>();
   Pizza currentPizza = new Pizza();
+  private string Message = String.Empty;
   protected override async Task OnInitializedAsync()
   {
     loadInfo();
@@ -56,4 +59,24 @@
   private void Edit(Pizza p){
     currentPizza = p;
   }
+
+  private async Task ValidateData(EditContext editContext)
+  {
+    Message = "";
+    if (editContext.Model is not Pizza p)
+        {
+            Message = "pizza object is invalid";
+            return;
+        }
+
+        if (p.Name.Length>5)
+        {
+            Message = "Loguitud demasiado larga";
+            return;
+        }
+
+        // Data is valid
+        // Save the data
+        Message = "Changes saved";
+    }
 }
