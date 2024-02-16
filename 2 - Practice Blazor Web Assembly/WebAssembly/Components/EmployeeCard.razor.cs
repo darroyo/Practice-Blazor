@@ -11,8 +11,8 @@ namespace WebAssembly.Components
         [Parameter]
         public EventCallback<Employee> EmployeeQuickViewClicked { get; set; }
 
-        // [Inject]
-        // public NavigationManager NavigationManager { get; set; }
+        [Inject]
+        public NavigationManager NavigationManager { get; set; }
 
         // protected override void OnInitialized()
         // {
@@ -22,11 +22,11 @@ namespace WebAssembly.Components
         //     }
         // }
 
-        // public void NavigateToDetails(Employee selectedEmployee)
-        // {
+        public void NavigateToDetails(Employee selectedEmployee)
+        {
 
-        //     NavigationManager.NavigateTo($"/employeedetail/{selectedEmployee.EmployeeId}");
+            NavigationManager.NavigateTo($"/employeedetails/{selectedEmployee.EmployeeId}");
 
-        // }
+        }
     }
 }
