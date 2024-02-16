@@ -11,9 +11,16 @@ else
     <QuickViewPopup Employee="_selectedEmployee"></QuickViewPopup>
     @foreach (var e in Employees)
     {
-        <EmployeeCard Employee="e" EmployeeQuickViewClicked="ShowQuickViewPopup"></EmployeeCard>
-        <br />
-        <hr />
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-2">
+            <ErrorBoundary>
+                <ChildContent>
+                    <EmployeeCard Employee="e" EmployeeQuickViewClicked="ShowQuickViewPopup"></EmployeeCard>
+                </ChildContent>
+                <ErrorContent>
+                    <p class="errorUI">Invalid employee!</p>
+                </ErrorContent>
+            </ErrorBoundary>
+        </div>
     }
 
 }

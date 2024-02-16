@@ -14,13 +14,13 @@ namespace WebAssembly.Components
         [Inject]
         public NavigationManager NavigationManager { get; set; }
 
-        // protected override void OnInitialized()
-        // {
-        //     if (string.IsNullOrEmpty(Employee.LastName))
-        //     {
-        //         throw new Exception("Last name can't be empty");
-        //     }
-        // }
+        protected override void OnInitialized()
+        {
+            if (Employee.EmployeeId==1)
+            {
+                throw new Exception("Employee.EmployeeId==1");
+            }
+        }
 
         public void NavigateToDetails(Employee selectedEmployee)
         {
