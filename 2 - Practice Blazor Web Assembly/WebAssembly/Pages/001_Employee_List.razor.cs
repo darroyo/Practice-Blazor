@@ -8,7 +8,7 @@ namespace WebAssembly.Pages
         public List<Employee> Employees { get; set; } = default!;
         private Employee? _selectedEmployee;
 
-        private string Title = "Employee overview";
+        private string Title = "Employee overview 2";
         private string Description = "employee overview";
 
         protected override void OnInitialized()
