@@ -1,4 +1,4 @@
-﻿using BethanysPieShopHRM.App.Models;
+﻿using WebAssembly.Models;
 using BethanysPieShopHRM.Shared.Domain;
 
 namespace WebAssembly.Pages
