@@ -1,0 +1,19 @@
+﻿@page "/001_Employee_List"
+
+<h2>Employee Overview</h2>
+
+@if (Employees == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <QuickViewPopup Employee="_selectedEmployee"></QuickViewPopup>
+    @foreach (var e in Employees)
+    {
+        <EmployeeCard Employee="e" EmployeeQuickViewClicked="ShowQuickViewPopup"></EmployeeCard>
+        <br />
+        <hr />
+    }
+
+}

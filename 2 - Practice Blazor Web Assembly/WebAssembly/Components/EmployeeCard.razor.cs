@@ -8,8 +8,8 @@ namespace WebAssembly.Components
         [Parameter]
         public Employee Employee { get; set; } = default!;
 
-        // [Parameter]
-        // public EventCallback<Employee> EmployeeQuickViewClicked { get; set; }
+        [Parameter]
+        public EventCallback<Employee> EmployeeQuickViewClicked { get; set; }
 
         // [Inject]
         // public NavigationManager NavigationManager { get; set; }
