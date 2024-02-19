@@ -1,51 +1,40 @@
 ﻿//using BethanysPieShopHRM.App.Helper;
 using BethanysPieShopHRM.Shared.Domain;
 using Blazored.LocalStorage;
+using System.Text;
+
 
 //using Blazored.LocalStorage;
 using System.Text.Json;
 
 namespace WebAssembly.Services
 {
-    public class EmployeeDataService: IEmployeeDataService
+    {
+    public class EmployeeDataService : IEmployeeDataService
     {
         private readonly HttpClient? _httpClient;
         private readonly ILocalStorageService _localStorageService;
-        
-        public EmployeeDataService(HttpClient httpClient, 
-            ILocalStorageService localStorageService)
+
+        public EmployeeDataService(HttpClient httpClient, ILocalStorageService localStorageService)
         {
             _httpClient = httpClient;
             _localStorageService = localStorageService;
         }
 
-        public Task<Employee> AddEmployee(Employee employee)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task DeleteEmployee(int employeeId)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<IEnumerable<Employee>> GetAllEmployees(bool refreshRequired = false)
         {
-            bool employeeExpirationExists = await _localStorageService.ContainKeyAsync(LocalStorageConstants.EmployeesListExpirationKey);
-            if (employeeExpirationExists)
+            if (refreshRequired)
             {
-                DateTime employeeListExpiration = await _localStorageService.GetItemAsync<DateTime>(LocalStorageConstants.EmployeesListExpirationKey);
-                if (employeeListExpiration > DateTime.Now)//get from local storage
+                bool employeeExpirationExists = await _localStorageService.ContainKeyAsync(LocalStorageConstants.EmployeesListExpirationKey);
+                if (employeeExpirationExists)
                 {
-                    if (await _localStorageService.ContainKeyAsync(LocalStorageConstants.EmployeesListKey))
+                    DateTime employeeListExpiration = await _localStorageService.GetItemAsync<DateTime>(LocalStorageConstants.EmployeesListExpirationKey);
+                    if (employeeListExpiration > DateTime.Now)//get from local storage
                     {
-                        return 
-                            (await _localStorageService.GetItemAsync<List<Employee>>(LocalStorageConstants.EmployeesListKey))
-                            .Select(x =>
-                            {
-                                x.FirstName = "FROM CACHE " + x.FirstName;
-                                return x;
-                            });
+                        if (await _localStorageService.ContainKeyAsync(LocalStorageConstants.EmployeesListKey))
+                        {
+                            return await _localStorageService.GetItemAsync<List<Employee>>(LocalStorageConstants.EmployeesListKey);
+                        }
                     }
                 }
             }
@@ -55,8 +44,9 @@ namespace WebAssembly.Services
             var list = await JsonSerializer.DeserializeAsync<IEnumerable<Employee>>
                     (await _httpClient.GetStreamAsync($"api/employee"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
             await Task.Delay(1000);
+
             await _localStorageService.SetItemAsync(LocalStorageConstants.EmployeesListKey, list);
-            await _localStorageService.SetItemAsync(LocalStorageConstants.EmployeesListExpirationKey, DateTime.Now.AddSeconds(10));
+            await _localStorageService.SetItemAsync(LocalStorageConstants.EmployeesListExpirationKey, DateTime.Now.AddMinutes(1));
 
             return list;
         }
@@ -67,9 +57,33 @@ namespace WebAssembly.Services
                 (await _httpClient.GetStreamAsync($"api/employee/{employeeId}"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
         }
 
-        public Task UpdateEmployee(Employee employee)
+        public async Task<Employee> AddEmployee(Employee employee)
         {
-            throw new NotImplementedException();
+            var employeeJson =
+                new StringContent(JsonSerializer.Serialize(employee), Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.PostAsync("api/employee", employeeJson);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return await JsonSerializer.DeserializeAsync<Employee>(await response.Content.ReadAsStreamAsync());
+            }
+
+            return null;
+        }
+
+        public async Task UpdateEmployee(Employee employee)
+        {
+            var employeeJson =
+                new StringContent(JsonSerializer.Serialize(employee), Encoding.UTF8, "application/json");
+
+            await _httpClient.PutAsync("api/employee", employeeJson);
+        }
+
+        public async Task DeleteEmployee(int employeeId)
+        {
+            await _httpClient.DeleteAsync($"api/employee/{employeeId}");
         }
     }
+}
 }
