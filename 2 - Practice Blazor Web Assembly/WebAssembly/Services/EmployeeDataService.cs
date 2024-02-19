@@ -9,7 +9,6 @@ using System.Text.Json;
 
 namespace WebAssembly.Services
 {
-    {
     public class EmployeeDataService : IEmployeeDataService
     {
         private readonly HttpClient? _httpClient;
@@ -40,11 +39,11 @@ namespace WebAssembly.Services
             }
 
             //otherwise refresh the list locally from the API and set expiration to 1 minute in future
+            await Task.Delay(1000);
 
             var list = await JsonSerializer.DeserializeAsync<IEnumerable<Employee>>
                     (await _httpClient.GetStreamAsync($"api/employee"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
-            await Task.Delay(1000);
-
+            
             await _localStorageService.SetItemAsync(LocalStorageConstants.EmployeesListKey, list);
             await _localStorageService.SetItemAsync(LocalStorageConstants.EmployeesListExpirationKey, DateTime.Now.AddMinutes(1));
 
@@ -85,5 +84,4 @@ namespace WebAssembly.Services
             await _httpClient.DeleteAsync($"api/employee/{employeeId}");
         }
     }
-}
 }
