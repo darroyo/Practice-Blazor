@@ -9,7 +9,8 @@
         <div class="card-body employee-card text-center">
 
             <div class="mb-3">
-                <img src="@($"https://gillcleerenpluralsight.blob.core.windows.net/person/{Employee.EmployeeId}.jpg")" class="employee-img rounded-circle img-fluid" />
+                @* <img src="@($"https://gillcleerenpluralsight.blob.core.windows.net/person/{Employee.EmployeeId}.jpg")" class="employee-img rounded-circle img-fluid" /> *@
+                <img src="https://localhost:7039/Uploads/@Employee.ImageName" class="employee-img rounded-circle img-fluid" />
             </div>
             <button class="btn btn-primary btn-sm mb-1" 
             @onclick="@(async () => await EmployeeQuickViewClicked.InvokeAsync(Employee))"

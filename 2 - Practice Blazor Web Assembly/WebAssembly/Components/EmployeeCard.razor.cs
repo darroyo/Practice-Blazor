@@ -16,7 +16,7 @@ namespace WebAssembly.Components
 
         protected override void OnInitialized()
         {
-            if (Employee.EmployeeId==3)
+            if (Employee.EmployeeId==22)
             {
                 throw new Exception("Employee.EmployeeId==1");
             }

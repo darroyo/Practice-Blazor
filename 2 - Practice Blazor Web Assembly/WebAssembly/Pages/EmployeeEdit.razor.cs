@@ -118,7 +118,7 @@ namespace WebAssembly.Pages
 
         protected void NavigateToOverview()
         {
-            NavigationManager.NavigateTo("/employeeoverview");
+            NavigationManager.NavigateTo("/001_Employee_List");
         }
 
     }
