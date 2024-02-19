@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
-namespace RazorClassLibrary
+namespace ComponentsLibrary
 {
     public partial class Map
     {

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -22,10 +22,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BethanysPieShopHRM.ComponentsLibrary\ComponentsLibrary.csproj" />
     <ProjectReference Include="..\BethanysPieShopHRM.Shared\BethanysPieShopHRM.Shared.csproj" />
-    <ProjectReference Include="..\RazorClassLibrary\RazorClassLibrary.csproj" />
   </ItemGroup>
 
+	<ItemGroup>
+		<BlazorWebAssemblyLazyLoad Include="ComponentsLibrary.wasm" />
+	</ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
   </ItemGroup>
