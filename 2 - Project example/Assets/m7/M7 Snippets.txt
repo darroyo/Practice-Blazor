@@ -1,0 +1,31 @@
+M7 Snippets
+-----------
+
+
+Marker.cs
+---------
+
+    public class Marker
+    {
+        public string Description { get; set; } = String.Empty;
+
+        public double X { get; set; }
+
+        public double Y { get; set; }
+
+        public bool? ShowPopup { get; set; }
+    }
+	
+OnNavigateAsync
+---------------
+
+	
+private async Task OnNavigateAsync(NavigationContext args)
+    {
+
+        if (args.Path.Contains("employeedetail"))
+        {
+            var assemblies = await LazyAssemblyLoader.LoadAssembliesAsync(new string[] { "BethanysPieShopHRM.ComponentsLibrary.dll" });
+            lazyLoadedAssemblies.AddRange(assemblies);
+        }
+    }

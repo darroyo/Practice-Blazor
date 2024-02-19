@@ -1,0 +1,216 @@
+M4 Snippets
+-----------
+
+
+QuickViewPopup.razor
+--------------------
+
+@if (_employee != null)
+{
+    <div class="modal fade show d-block" id="exampleModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="titleLabel">Employee Quick View</h5>
+                    <button type="button" class="close btn btn-lg"  data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col row">
+                        <div class="col-12 col-sm-8">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label">Employee ID</label>
+                                <div class="col-sm-7">
+                                    <label type="text" class="form-control-plaintext">@_employee.EmployeeId</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label">First name</label>
+                                <div class="col-sm-7">
+                                    <label type="text" readonly class="form-control-plaintext">@_employee.FirstName</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label">Last name</label>
+                                <div class="col-sm-7">
+                                    <label type="text" readonly class="form-control-plaintext">@_employee.LastName</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label">Birthdate</label>
+                                <div class="col-sm-7">
+                                    <label type="text" readonly class="form-control-plaintext">@_employee.BirthDate.ToShortDateString()</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label">Email</label>
+                                <div class="col-sm-7">
+                                    <label type="text" readonly class="form-control-plaintext">@_employee.Email</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-outline-primary" >Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+EmployeeDetail.razor
+--------------------
+
+
+
+<section class="employee-detail">
+    <h1 class="page-title">Details for @Employee.FirstName @Employee.LastName</h1>
+    <br />
+    <div class="col-12 row">
+        <div class="col-2 text-center">
+            <img src="@($"https://gillcleerenpluralsight.blob.core.windows.net/person/{Employee.EmployeeId}.jpg")" class="img-fluid rounded-circle employee-detail-img" />
+        </div>
+        <div class="col-10 row">
+            <div class="col-12 col-xxl-8">
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Employee ID</label>
+                    <div class="col-sm-8">
+                        <label type="text" class="form-control-plaintext">@Employee.EmployeeId</label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">First name</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Employee.FirstName</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Last name</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Employee.LastName</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Birthdate</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Employee.BirthDate.ToShortDateString()</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Email</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Employee.Email</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Street</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Employee.Street</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Zip</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Employee.Zip</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">City</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Employee.City</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Phone number</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Employee.PhoneNumber</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Gender</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Employee.Gender</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Smoker</label>
+                    <div class="col-sm-8">
+
+                        @if (Employee.Smoker)
+                        {
+                            <label type="text" readonly class="form-control-plaintext">Yes</label>
+                        }
+                        else
+                        {
+                            <label type="text" readonly class="form-control-plaintext">No</label>
+
+                        }
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Joined us</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Employee.JoinedDate?.ToShortDateString()</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Left us</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Employee.ExitDate?.ToShortDateString()</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-xxl-4">
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+MockDataService
+---------------
+
+
+var e3 = new Employee
+            {
+                MaritalStatus = MaritalStatus.Married,
+                BirthDate = new DateTime(1979, 1, 16),
+                City = "Antwerp",
+                Email = "gill@bethanyspieshop.com",
+                EmployeeId = 2,
+                FirstName = "Jane",
+                LastName = String.Empty,
+                Gender = Gender.Female,
+                PhoneNumber = "33999909923",
+                Smoker = false,
+                Street = "New Street",
+                Zip = "2000",
+                JobCategory = _jobCategories[1],
+                JobCategoryId = _jobCategories[1].JobCategoryId,
+                Comment = "Lorem Ipsum",
+                ExitDate = null,
+                JoinedDate = new DateTime(2017, 12, 24),
+                Country = _countries[1],
+                CountryId = _countries[1].CountryId
+            };
+
+            return new List<Employee>() { e1, e2, e3 };
