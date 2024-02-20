@@ -7,14 +7,17 @@
             <NavLink class="list-group-item list-group-item-action bg-light" href="/" Match="NavLinkMatch.All">
                 <span class="oi oi-home" aria-hidden="true"></span> Home
             </NavLink>
-            <NavLink class="list-group-item list-group-item-action bg-light" href="/001_Employee_List">
-                <span class="oi oi-people" aria-hidden="true"></span>001_Employee_List
-            </NavLink>
+            <AuthorizeView>
+                <NavLink class="list-group-item list-group-item-action bg-light" href="/001_Employee_List">
+                    <span class="oi oi-people" aria-hidden="true"></span>001_Employee_List
+                </NavLink>
+                <NavLink class="list-group-item list-group-item-action bg-light" href="/employeeedit">
+                    <span class="oi oi-plus" aria-hidden="true"></span> Add new employee
+                </NavLink>
+            </AuthorizeView>
+            
             <NavLink class="list-group-item list-group-item-action bg-light" href="/InboxCounter">
                 <span class="oi oi-people" aria-hidden="true"></span>002_InboxCounter
-            </NavLink>
-            <NavLink class="list-group-item list-group-item-action bg-light" href="/employeeedit">
-                <span class="oi oi-plus" aria-hidden="true"></span> Add new employee
             </NavLink>
         </div>
     </div>
