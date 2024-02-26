@@ -1,0 +1,27 @@
+﻿@page "/coffees"
+<h3>Coffees</h3>
+@if(coffees == null)
+{
+    <span style="color:red">Loading...</span>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+    <tbody>
+        @foreach (var c in coffees)
+        {
+            <tr>
+                <td>@c.Name</td>
+                <td>@c.Description</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
