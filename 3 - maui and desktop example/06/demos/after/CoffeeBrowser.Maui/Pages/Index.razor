@@ -1,0 +1,18 @@
+﻿@page "/"
+
+<h1>Wired Brain Coffee</h1>
+
+<AuthorizeView>
+    <Authorized>
+        Welcome to the coffee browser app.
+    </Authorized>
+    <NotAuthorized>
+        Please log in.
+    </NotAuthorized>
+</AuthorizeView>
+
+<AuthorizeView Roles="Admin">
+    <div style="background-color:#444;color:white;padding:10px">
+        This is only visible for admins
+    </div>
+</AuthorizeView>

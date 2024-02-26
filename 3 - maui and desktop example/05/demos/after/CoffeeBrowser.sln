@@ -1,0 +1,38 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31611.283
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeBrowser.Maui", "CoffeeBrowser.Maui\CoffeeBrowser.Maui.csproj", "{418AAD0E-746A-4086-97CF-9B9F52BDB2E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeBrowser.Library", "CoffeeBrowser.Library\CoffeeBrowser.Library.csproj", "{033501D9-A499-4F2A-B056-7E0195A2BF84}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeBrowser.BlazorServer", "CoffeeBrowser.BlazorServer\CoffeeBrowser.BlazorServer.csproj", "{4F5A8334-7C17-4858-8B44-0896FE398F9C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{418AAD0E-746A-4086-97CF-9B9F52BDB2E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{418AAD0E-746A-4086-97CF-9B9F52BDB2E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{418AAD0E-746A-4086-97CF-9B9F52BDB2E5}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{418AAD0E-746A-4086-97CF-9B9F52BDB2E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{418AAD0E-746A-4086-97CF-9B9F52BDB2E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{418AAD0E-746A-4086-97CF-9B9F52BDB2E5}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{033501D9-A499-4F2A-B056-7E0195A2BF84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{033501D9-A499-4F2A-B056-7E0195A2BF84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{033501D9-A499-4F2A-B056-7E0195A2BF84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{033501D9-A499-4F2A-B056-7E0195A2BF84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F5A8334-7C17-4858-8B44-0896FE398F9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F5A8334-7C17-4858-8B44-0896FE398F9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F5A8334-7C17-4858-8B44-0896FE398F9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F5A8334-7C17-4858-8B44-0896FE398F9C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {61F7FB11-1E47-470C-91E2-47F8143E1572}
+	EndGlobalSection
+EndGlobal
