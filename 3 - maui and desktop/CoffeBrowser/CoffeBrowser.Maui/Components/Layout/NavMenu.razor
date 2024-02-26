@@ -1,4 +1,6 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿@inject AuthenticationStateProvider AuthStateProvider
+@inject NavigationManager NavigationManager
+<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid justify-content-center">
         <a class="navbar-brand" href="">
             <img src="/img/logo.png" class="logo"/>
@@ -16,20 +18,51 @@
                 <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
             </NavLink>
         </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="/coffees">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Coffees
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="weather">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
-            </NavLink>
-        </div>
+        <AuthorizeView>
+            <Authorized>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="/coffees">
+                        <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Coffees
+                    </NavLink>
+                </div>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="counter">
+                        <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
+                    </NavLink>
+                </div>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="weather">
+                        <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
+                    </NavLink>
+                </div>
+                <div class="nav-item px-3">
+                    <NavLink @onclick="Logout" class="nav-link">
+                        <span class="bi btn-outline-info" aria-hidden="true"></span> Logout
+                    </NavLink>
+                </div>
+            </Authorized>
+            <NotAuthorized>
+                <div class="nav-item px-3">
+                    <NavLink @onclick="Login" class="nav-link">
+                        <span class="bi btn-outline-info" aria-hidden="true"></span> Login
+                    </NavLink>
+                </div>
+            </NotAuthorized>
+        </AuthorizeView>
+        
     </nav>
 </div>
+@code {
+    private async Task Login()
+    {
+        var x = (CustomAuthenticationStateProvider)AuthStateProvider;
+        await x.LogInAsync();
+        NavigationManager.NavigateTo("/");
+    }
+    private void Logout()
+    {
+        var x = (CustomAuthenticationStateProvider)AuthStateProvider;
+        x.Logout();
+        NavigationManager.NavigateTo("/");
+    }
+}
