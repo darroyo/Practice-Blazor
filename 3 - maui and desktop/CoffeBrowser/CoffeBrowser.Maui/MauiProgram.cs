@@ -1,4 +1,4 @@
-﻿using CoffeBrowser.Maui.Data;
+﻿using CoffeBrowser.Library.Data;
 using Microsoft.Extensions.Logging;
 
 namespace CoffeBrowser.Maui

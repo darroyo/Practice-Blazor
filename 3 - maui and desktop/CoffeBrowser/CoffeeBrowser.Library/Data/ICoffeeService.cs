@@ -1,5 +1,5 @@
 ﻿
-namespace CoffeBrowser.Maui.Data
+namespace CoffeBrowser.Library.Data
 {
     public interface ICoffeeService
     {
