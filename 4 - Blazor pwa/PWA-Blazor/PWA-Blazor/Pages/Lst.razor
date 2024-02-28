@@ -1,0 +1,27 @@
+﻿@page "/lst"
+@using Microsoft.AspNetCore.Authorization
+
+<h3>Coffees</h3>
+        @if (coffees == null)
+        {
+            <span style="color:red">Loading...</span>
+        }
+        else
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var c in coffees)
+                    {
+                        <tr>
+                            <td>@c.ToString()</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+
